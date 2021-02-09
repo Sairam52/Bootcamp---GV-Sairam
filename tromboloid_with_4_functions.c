@@ -1,27 +1,32 @@
-#include <stdio.h>
-int input()
+// 1/3 of ((h x d x b) + ( d divided by b)).
+#include<stdio.h>
+float input()
 {
-    int a,b;
-    printf("Enter 1st number :");
-    scanf("%d",&a);
-    return a;
+    float num;
+    scanf("%f",&num);
+    return num;
 }
-int add(int a, int b, int c)
+
+float result(float h,float d,float b)
 {
-    c=a+b;
-    return c;
+    return 0.33*((h*d*b)+(d/b));
 }
-int display(int c)
+
+int display(float r)
 {
-    printf("the sum is:%d",c);
+    printf("%.2f",r);
     return 0;
 }
-int main() 
+int main()
 {
-    int a,b,c,d;
-    a=input();
+    float r,h,d,b;
+    printf("Enter H:");
+    h=input();
+    printf("Enter D:");
+    d=input();
+    printf("Enter B:");
     b=input();
-    d=add(a,b,c);
-    display(d);
+    r=result(h,d,b);
+    display(r);
     return 0;
 }
