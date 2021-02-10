@@ -6,7 +6,7 @@ float input()
     scanf("%d",&a);
     return a;
 }
-float add(float a, float b, float c,float d)
+float cumpute_add(float a, float b, float c,float d)
 {
     
     return sqrt(pow((a-c),2)+pow((b-d),2));
