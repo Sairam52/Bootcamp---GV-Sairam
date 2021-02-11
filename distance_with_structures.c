@@ -3,7 +3,7 @@
 struct points  
 { 	
   float x,y;
-}p1,p2;
+};
 
 float input() 
 {
@@ -22,6 +22,7 @@ int display(float sum)
 }
 int main() 
 {
+  struct points p1,p2;
   float sum;
   printf("Enter (x1,y1):");
   p1.x = input();
