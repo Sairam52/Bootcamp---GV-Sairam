@@ -25,7 +25,7 @@ int main()
     printf("Enter (x2,y2):");
     c=input();
     d=input();
-    sum=add(a,b,c,d);
+    sum=compute_add(a,b,c,d);
     display(sum);
     return 0;
 }
