@@ -21,7 +21,7 @@ int main()
     int a,b,c,d;
     a=input();
     b=input();
-    d=add(a,b,c);
+    d=compute_add(a,b,c);
     display(d);
     return 0;
 }
