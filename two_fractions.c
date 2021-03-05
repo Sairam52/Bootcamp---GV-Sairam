@@ -1,74 +1,55 @@
-#include <stdio.h>
-#include <math.h>
+#include<stdio.h>
 struct frac
 {
-    int gcd,lcm,lar,NUM,DEN;
+	int num,den;
 };
-
-int input()
+typedef struct frac Frac;
+Frac input()
 {
-    int num;
-    scanf("%d",&num);  
-    return num;
+	Frac f;
+	printf("Enter the Numerator: ");
+	scanf("%d",&f.num);
+	printf("Enter the Denominator: ");
+	scanf("%d",&f.den);
+	return f;
 }
 
-int solve(int num1,int num2,int den1,int den2)
+int compute_sum(Frac p1, Frac p2)
 {
-    struct frac f;
-    int ans1,ans2,x;
-    for(int i=1;i<=den1 && i<=den2;i++)
-    {
-      f.gcd=i;
-    }
-  
-    f.lcm = den1*den2/f.gcd;
-  
-    if(den1>den2 && den1%den2==0)
-    {
-        f.lar=f.lcm/den2;
-        f.NUM=num2*f.lar+num1;
-        f.DEN=den1;
-    }
-    else if(den2>den1 && den2%den1==0)
-    {
-        f.lar=f.lcm/den1;
-        f.NUM=num1*f.lar+num2;
-        f.DEN=den2;
-    }
-    else
-    {
-        f.NUM=num1*den2+num2*den1;
-        f.DEN=den2*den1;
-    } 
-    
-    int big=f.NUM;
-    
-    if(f.DEN>f.NUM)
-        big=f.DEN;
-    
-    for(int i=1;i<=big;i++)
-    {
-        if((f.NUM%i==0)&&(f.DEN%i==0))
-            x=i;
-    }
-    ans1=f.NUM/x;
-    ans2=f.DEN/x;
-    printf("Sum is: %d/%d",ans1,ans2);
+	int gcd, lcm,lar,numerator,denominator,big;
+	for(int i=1;i<=p1.den && i<=p2.den;i++)
+	{
+		gcd=i;
+	}
+	lcm=(p1.den*p2.den)/gcd;
+	if(p1.den>p2.den && p1.den%p2.den==0)
+	{
+		lar=lcm/p2.den;
+		numerator=p2.num*lar+p1.num;
+		denominator=p1.den;		
+	}
+	
+	else if(p2.den>p1.den && p2.den%p1.den==0)
+	{
+		lar=lcm/p1.den;
+		numerator=p1.num*lar+p2.num;
+		denominator=p2.den;		
+	}
+	
+	else
+	{
+		numerator=p2.num*p1.den+p1.num*p2.den;
+		denominator=p2.den*p1.den;
+	}
+	printf("The answer is: %d/%d",numerator,denominator);
 }
 
 int main()
 {
-    struct frac f;
-    
-    int num1,num2,den1,den2;
-    printf("enter numerator 1 : ");
-    num1=input();
-    printf("enter denominator 1 : ");
-    den1=input();
-    printf("enter numerator 2 : ");
-    num2=input();
-    printf("enter denominator 2 : ");
-    den2=input();
-    solve(num1,num2,den1,den2);
-    return 0;
+	Frac f1,f2;
+	f1=input();
+	f2=input();
+	compute_sum(f1,f2);
+	return 0;
+	
 }
