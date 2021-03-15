@@ -1,57 +1,59 @@
-#include <stdio.h>
-struct frac
-{
-  int den[10];
-  int num[10];
-  int n;
+#include<stdio.h>
+
+struct fraction{
+	int num,den;
+	int NUM,DEN;
 };
-int input()
+typedef struct fraction frac;
+
+frac input_one()
 {
-    struct frac s;
-    printf("Enter the limit  :");
-    scanf("%d",&s.n);
-    for(int i=0;i<s.n;i++)
-    {
-        printf("Enter the numerator : ");
-        scanf("%d",&s.num[i]);
-        printf("Enter the denominator : ");
-        scanf("%d",&s.den[i]);
-    }
-    return 0;
+	frac f;
+	printf("Enter numerator :");
+	scanf("%d",&f.num);
+	printf("Enter denominator :");
+	scanf("%d",&f.den);
+	return f;
 }
-int sum()
+
+void input_n(int n, frac F[n])
 {
-    struct frac s;
-    int lcm=1,sum=0,lar,x=0,sum1=0,lcm1=0;
-    for(int i=0;i<s.n;i++)
+	for(int i =0;i<n;i++)
+	{
+		F[i]=input_one();
+	}
+}
+
+frac compute_n(int n,frac F[n])
+{
+    frac f;
+	int lcm,k[10],sum=0;
+    lcm=1;
+	for(int j=0;j<n;j++)
+	{
+			lcm=lcm*F[j].den;
+	}
+	
+    for(int i=0;i<n;i++)
     {
-        lcm=lcm*s.den[i];
+        k[i]=lcm/F[i].den;
+        sum=sum+(k[i]*F[i].num);
     }
-    int l[10];
-    for(int i=0;i<s.n;i++)
-    {
-        l[i]=lcm/s.den[i];
-        sum=sum+(l[i]*s.num[i]);
-    }
-  
-    lar=sum;
-    if(lar<lcm)
-        lar=lcm;
-    else 
-        lar=sum;
-    for(int i=1;i<=lar;i++)
-    {
-        if((sum%i==0)&&(lcm%i==0))
-            x=i;
-    }
-    sum1=sum/x;
-    lcm1=lcm/x;
-    printf("Sum : %d/%d",sum1,lcm1);
-    return 0;
+    printf("%d",lcm);
+}
+void output(frac result)
+{
+    printf("The sum is = %d/%d",result.NUM,result.DEN);
 }
 int main()
 {
-    input();
-    sum();
-    return 0;
+    int n,den;
+    frac f[n],num;
+    printf("Enter the number of fractions :");
+    scanf("%d",&n);
+	input_n(n,f);
+	num=compute_n(n,f);
+    output(num);
+    
+	return 0;
 }
