@@ -39,7 +39,30 @@ frac compute_n(int n,frac F[n])
         k[i]=lcm/F[i].den;
         sum=sum+(k[i]*F[i].num);
     }
-    printf("%d",lcm);
+    int x;
+    if(sum>lcm)
+    {
+        for(int i=1;i<sum;i++)
+        {
+            if(sum%i==0 && lcm%i==0)
+            {
+                x=i;
+            }
+        }
+    }
+    else{
+        for(int i=1;i<lcm;i++)
+        {
+            if(sum%i==0 && lcm%i==0)
+            {
+                x=i;
+            }
+        }
+    }
+    
+    f.NUM=sum/x;
+    f.DEN=lcm/x;
+    return f;
 }
 void output(frac result)
 {
@@ -47,11 +70,12 @@ void output(frac result)
 }
 int main()
 {
-    int n,den;
-    frac f[n],num;
+    int n;
+    frac num;
     printf("Enter the number of fractions :");
     scanf("%d",&n);
-	input_n(n,f);
+    frac f[n];
+    input_n(n,f);
 	num=compute_n(n,f);
     output(num);
     
